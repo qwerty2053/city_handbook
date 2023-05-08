@@ -1,4 +1,3 @@
-from django.db.models import QuerySet
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins, generics
 
