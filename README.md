@@ -1,6 +1,6 @@
 # City Handbook
 
-City Handbook is the back-end side of a web application developed using Django and Django Rest Framework. It allows users to browse information about various establishments in different cities. It provides an API for developers to access this information programmatically and an admin panel for managing the content.
+City Handbook is the back-end of a web application developed using Django and Django Rest Framework. It allows users to browse information about various establishments in different cities. It provides an API for developers to access this information programmatically and an admin panel for managing the content.
 
 ## Getting Started
 
@@ -32,14 +32,14 @@ City Handbook is the back-end side of a web application developed using Django a
    ```
    python manage.py runserver
    ```
-6. Access the web application at `http://localhost:8000/`
+6. Access the API Root at `http://localhost:8000/api`
 
 ### Usage
 
 The admin panel provides the following features:
 
 - Add, edit, and delete establishments, categories, cities
-- Add, edit, and delete images, contact info for each establishment
+- Add, edit, and delete images, contact information for each establishment
 
 ### API Documentation
 
@@ -47,12 +47,12 @@ The API provides the following endpoints:
 
 - `/api/category_list/`: Retrieve a list of all categories
 - `/api/city_list/`: Retrieve a list of all cities
-- `/api/est_list/`: Retrieve a list of all establishments
+- `/api/est_list/`: Retrieve a list of all establishments (not all fields)
 - `/api/category/{id}/`: Retrieve a list of all establishments by category
 - `/api/city/{id}/`: Retrieve a list of all establishments by city
 - `/api/est/{id}/`: Retrieve a single establishment by ID
-- `/api/search/title/{title}/`: Retrieve a list of all hotels
-- `/api/search/address/{address}/`: Retrieve a single hotel by ID
+- `/api/search/title/{title}/`: Retrieve a list of establishments with a title field that matches the {title}
+- `/api/search/address/{address}/`: Retrieve a list of establishments with an address field that matches the {address}
 
 The API uses the JSON format for data exchange.
 
