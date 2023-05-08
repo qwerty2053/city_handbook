@@ -1,19 +1,29 @@
 from rest_framework import serializers
-from .models import Establishment, ContactInfo, ImageSet
+from .models import Establishment, ContactInfo, ImageSet, City, Category
 
 
-class EstablishmentListSerializer(serializers.ModelSerializer):
-    city = serializers.SerializerMethodField()
-    category = serializers.SerializerMethodField()
+class CityWithIdSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Establishment
-        fields = ('id', 'category', 'title', 'city')
+        model = City
+        fields = '__all__'
 
-    def get_city(self, instance):
-        return instance.city.title
 
-    def get_category(self, instance):
-        return instance.category.title
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = ('title',)
+
+
+class CategoryWithIdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('title',)
 
 
 class ImageSetSerializer(serializers.ModelSerializer):
@@ -31,14 +41,29 @@ class ContactInfoSerializer(serializers.ModelSerializer):
 
 
 class EstablishmentSerializer(serializers.ModelSerializer):
-    city = serializers.SerializerMethodField()
-    category = serializers.SerializerMethodField()
     contacts = ContactInfoSerializer()
     images = ImageSetSerializer()
+    city = serializers.SerializerMethodField()
+    category = serializers.SerializerMethodField()
 
     class Meta:
         model = Establishment
         fields = ('id', 'category', 'title', 'description', 'address', 'city', 'contacts', 'images')
+
+    def get_city(self, instance):
+        return instance.city.title
+
+    def get_category(self, instance):
+        return instance.category.title
+
+
+class EstablishmentListSerializer(serializers.ModelSerializer):
+    city = serializers.SerializerMethodField()
+    category = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Establishment
+        fields = ('id', 'title', 'category', 'city')
 
     def get_city(self, instance):
         return instance.city.title
