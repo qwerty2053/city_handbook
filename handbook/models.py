@@ -66,8 +66,10 @@ class Establishment(models.Model):
     title = models.CharField('Название', max_length=50)
     description = models.TextField('Описание')
     address = models.CharField('Адрес', max_length=50)
-    category = models.ForeignKey('handbook.category', on_delete=models.CASCADE, verbose_name='Категория')
-    city = models.ForeignKey('handbook.city', on_delete=models.CASCADE, verbose_name='Город')
+    category = models.ForeignKey('handbook.category', on_delete=models.CASCADE, verbose_name='Категория', \
+                                 related_name='establishments')
+    city = models.ForeignKey('handbook.city', on_delete=models.CASCADE, verbose_name='Город', \
+                             related_name='establishments')
 
     class Meta:
         verbose_name = 'Заведение'

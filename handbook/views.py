@@ -61,7 +61,7 @@ class EstablishmentTitleSearchAPIView(generics.ListAPIView):
     def get_queryset(self):
         # Empty search will return all the objects
         # so we'll use str.strip and check if query is not empty
-        title = self.kwargs['title']
+        title = self.kwargs['title'].strip()
         if not title:
             return Establishment.objects.none()
         return Establishment.objects.filter(title__icontains=title)
